@@ -1,0 +1,41 @@
+// LINEAR SEARCH with time 
+
+#include<stdio.h>
+#include<time.h>
+
+int LinearSearch(int a[],int n,int key){
+    int i;
+    for(i=0;i<n;i++){
+        if(key == a[i]){
+            printf("The key is found at the location %d.\n",i+1);
+            return i;
+        }
+    }
+    printf("Element is not found.\n");
+    return -1;
+}
+
+int main(){
+    int n,i,key;
+    clock_t start,end;
+
+    printf("Enter no of elements:");
+    scanf("%d",&n);
+
+    int a[n];
+    
+    printf("Enter the elements of an array:\n");
+    for(i=0;i<n;i++){
+        scanf("%d",&a[i]);
+    }
+    printf("Enter the element to be searched:");
+    scanf("%d",&key);
+
+    start = clock();
+    LinearSearch(a,n,key);
+    end = clock();
+
+    double time_taken = (double)(end-start)/CLOCKS_PER_SEC;
+    printf("Total time taken:%f sec\n",time_taken);
+}
+   1a
