@@ -1,0 +1,56 @@
+//SELECTION SORT
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+
+void selectionsort(int book[], int n)
+{
+    int i, j, min, temp;
+
+    for(i = 0; i < n - 1; i++)
+    {
+        min = i;
+
+        for(j = i + 1; j < n; j++)
+        {
+            if(book[min] > book[j])
+            {
+                min = j;
+            }
+        }
+
+        // Swap after inner loop
+        temp = book[i];
+        book[i] = book[min];
+        book[min] = temp;
+    }
+}
+
+int main()
+{
+    int i, accessno;
+    clock_t start, end;
+    double totaltime;
+
+    printf("Enter number of books: ");
+    scanf("%d", &accessno);
+
+    int book[accessno];
+
+    // Correct loop (removed semicolon)
+    for(i = 0; i < accessno; i++)
+    {
+        book[i] = rand() % (accessno + 1);
+    }
+
+    start = clock();
+    selectionsort(book, accessno);
+    end = clock();
+
+    totaltime = ((double)(end - start)) / CLOCKS_PER_SEC;
+
+    printf("Total time taken: %f seconds\n", totaltime);
+
+    return 0;
+}
