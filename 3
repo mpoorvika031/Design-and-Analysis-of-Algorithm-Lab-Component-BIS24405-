@@ -1,0 +1,77 @@
+// KNAPSACK PROBLEM
+
+#include <stdio.h>
+struct item
+{
+	int value;
+	int weight;
+	float ratio;
+};
+int main()
+{
+	int n,i,j;
+	int capacity;
+	float maxvalue=0;
+	
+	printf("Enter number of items");
+	scanf("%d",&n);
+	
+	struct item items[n];
+	
+	for(i=0;i<n;i++)
+	{
+		printf("Item %d details\n",i);
+		printf("enter value\n");
+		scanf("%d",&items[i].value);
+		printf("enter weight\n");
+		scanf("%d",&items[i].weight);
+	}
+	
+	for(i=0;i<n;i++)
+	{
+		items[i].ratio=((float)(items[i].value))/(items[i].weight);
+	}
+	
+	struct item temp;
+	
+	for(i=0;i<n-1;i++)
+	{
+		for(j=0;j<n-i-1;j++)
+		{
+			if(items[j].ratio<items[j+1].ratio)
+			{
+				temp=items[j];
+				items[j]=items[j+1];
+				items[j+1]=temp;
+			}
+		}
+	}
+	
+	printf("sorted deatils of structure are\n");
+	printf("Value\t\tweight\t\tratio\n");
+	for(i=0;i<n;i++)
+	{
+		printf("%d\t\t\%d\t\t%f\n",items[i].value,items[i].weight,items[i].ratio);
+	}
+	printf("enter capacity\n");
+	scanf("%d",&capacity);
+	
+	for(i=0;i<n;i++)
+	{
+		if(capacity>=items[i].weight)
+		{
+			capacity-=items[i].weight;
+			maxvalue+=items[i].value;
+			printf("item : %d is taken fully\n",i);
+		}
+		else
+		{
+			float fraction = ((float)capacity)/(items[i].weight);
+			maxvalue+=items[i].ratio*capacity;
+			printf("fraction : %.2f of item : %d is taken\n", fraction,i);
+			break;
+		}
+	}
+printf("max value=%f",maxvalue);
+return 0;
+}
