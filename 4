@@ -1,0 +1,66 @@
+// DIJKSTRA ALGORITHM
+
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+	int i,j,n,src,min,next;
+	printf("Enter the number of nodes:");
+	scanf("%d",&n);
+
+	int cost[n][n],dist[n],visited[n];
+	printf("\nEnter the cost matrix details:");
+	for(i=0;i<n;i++){
+		for(j=0;j<n;j++){
+			scanf("%d",&cost[i][j]);
+		}
+	}
+			
+	printf("The cost matrix details are:\n");
+		
+	for(i=0;i<n;i++){
+		for(j=0;j<n;j++){
+			printf("%d ",cost[i][j]);
+		}
+		printf("\n");
+	}
+		
+	printf("Enter the source node: \n");
+	scanf("%d",&src);
+		
+	for(i=0;i<n;i++)
+	{
+		dist[i]=cost[src][i];
+		visited[i]=0;
+	}
+	visited[src]=1;
+
+	for(i=0;i<n;i++){
+		min=999;
+		for(j=0;j<n;j++){
+			if(!visited[j]){
+			 	if(min>dist[j]){
+			 		 min = dist[j];
+			 		 next =j;
+			 	}
+			}
+		}
+		visited[next] = 1;
+		for(j=0;j<n;j++){
+			if(dist[j] > dist[next] + cost[next][j])
+			 {
+			 	dist[j] = dist[next] + cost[next][j];
+			 }
+		}
+		visited[next] = 1;
+	}
+	
+	printf("the shortest path details are:");
+		
+	for(i=0;i<n;i++)
+	{
+		printf("the cost of path %d to %d is %d \n",src,i,dist[i]);
+	}
+	
+	return 0;
+}
