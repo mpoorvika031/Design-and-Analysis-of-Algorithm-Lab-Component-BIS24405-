@@ -1,6 +1,6 @@
 # 📊 Design and Analysis of Algorithms Lab
 
-This repository contains implementations of various algorithms studied in the **Design and Analysis of Algorithms (DAA)** lab. The programs are written in C/Java and demonstrate different algorithmic techniques along with their performance analysis.
+This repository contains implementations of various algorithms studied in the **Design and Analysis of Algorithms (DAA)** lab. The programs are written in C and demonstrate different algorithmic techniques along with their performance analysis.
 
 ## Overview
 
